@@ -30,4 +30,10 @@ public class UserRegistrationTest {
         Assert.assertTrue(String.valueOf(result), true);
 
     }
+
+    @Test
+    public void givenPasswordRules_WhenProperRules_ShouldReturnTrue() {
+        boolean result = userRegistrationTest.validatePasswordRules("AShuu@14");
+        Assert.assertTrue(String.valueOf(result),true);
+    }
 }

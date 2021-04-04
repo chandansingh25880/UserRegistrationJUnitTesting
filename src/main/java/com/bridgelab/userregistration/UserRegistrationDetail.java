@@ -10,6 +10,7 @@ public class UserRegistrationDetail {
     private String lastName;
     private String emailId;
     private String mobileNumber;
+    private String password;
 
     public String getFirstName() {
         Scanner scanner = new Scanner(System.in);
@@ -29,6 +30,7 @@ public class UserRegistrationDetail {
         }
         return matches;
     }
+
     public String getLastName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your last name");
@@ -42,6 +44,7 @@ public class UserRegistrationDetail {
         UserRegistrationDetail.validateFirstName(firstName);
         String lastName = UserRegistrationDetail.getLastName();
     }
+
     /* @Description User enter a valid last name.
      */
     public boolean validateLastName(String sing) {
@@ -64,22 +67,24 @@ public class UserRegistrationDetail {
         emailId = scanner.nextLine();
         return emailId;
     }
- /*
-   @Discription in this we are validate the condition for user.
-   if user enter the currect email id and followed by the regex condition
- */
-        public boolean validateEmail(String emailId) {
-            Pattern pattern = Pattern.compile(
-                    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
-                    Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(emailId);
-            boolean matches = matcher.find();
-            if(matches)
-                System.out.println("Email id is valid");
-            else
-                System.out.println("Email id is not  valid");
-            return matches;
-        }
+
+    /*
+      @Discription in this we are validate the condition for user.
+      if user enter the currect email id and followed by the regex condition
+    */
+    public boolean validateEmail(String emailId) {
+        Pattern pattern = Pattern.compile(
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+                Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(emailId);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("Email id is valid");
+        else
+            System.out.println("Email id is not  valid");
+        return matches;
+    }
+
     /*
  user need to enter mobile number and must follow the condition.
 */
@@ -94,17 +99,6 @@ public class UserRegistrationDetail {
     this is the condition for user if the user follow the condition
     the valid mobile number other wise invalid mobile number.
      */
-  //      public boolean validateMobileNumber(String mobileNumber) {
-    //        Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
-      //      Matcher matcher = pattern.matcher(mobileNumber);
-        //    boolean matches = matcher.find();
-          //  if (matches)
-           //     System.out.println("your mobile number is valid");
-          //  else
-           //     System.out.println("Invalid mobile number");
-
-           //    return matches;
-     //   }
 
     public boolean validatemobileNumber(String mobileNumber) {
         Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
@@ -117,7 +111,34 @@ public class UserRegistrationDetail {
 
         return matches;
     }
-   }
+
+    /*@Description:- take password from user
+     */
+    public String getPassword() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("enter password");
+            password = scanner.next();
+        }
+        return password;
+    }
+
+    /*@Description:- password must be of length at least 8 characters or more
+     * */
+
+    public boolean validatePasswordRules(String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(password);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("your password is valid");
+        else
+            System.out.println("Invalid password");
+        return matches;
+    }
+
+}
+
+
 
 
 
