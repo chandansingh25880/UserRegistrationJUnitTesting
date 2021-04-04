@@ -9,6 +9,8 @@ public class UserRegistrationDetail {
     private String firstName;
     private String lastName;
     private String emailId;
+    private String mobileNumber;
+
     public String getFirstName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your first name");
@@ -78,7 +80,45 @@ public class UserRegistrationDetail {
                 System.out.println("Email id is not  valid");
             return matches;
         }
-
+    /*
+ user need to enter mobile number and must follow the condition.
+*/
+    public String getMobileNumber() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter your mobile number");
+        mobileNumber = scanner.nextLine();
+        return mobileNumber;
     }
+
+    /* @Description
+    this is the condition for user if the user follow the condition
+    the valid mobile number other wise invalid mobile number.
+     */
+  //      public boolean validateMobileNumber(String mobileNumber) {
+    //        Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
+      //      Matcher matcher = pattern.matcher(mobileNumber);
+        //    boolean matches = matcher.find();
+          //  if (matches)
+           //     System.out.println("your mobile number is valid");
+          //  else
+           //     System.out.println("Invalid mobile number");
+
+           //    return matches;
+     //   }
+
+    public boolean validatemobileNumber(String mobileNumber) {
+        Pattern pattern = Pattern.compile("^((\\+)?(\\d{2}[-]))?(\\d{10}){1}?$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(mobileNumber);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("your mobile number is valid");
+        else
+            System.out.println("Invalid mobile number");
+
+        return matches;
+    }
+   }
+
+
 
 
