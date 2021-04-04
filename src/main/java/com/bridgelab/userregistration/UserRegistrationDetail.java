@@ -8,13 +8,12 @@ import java.util.regex.Pattern;
 public class UserRegistrationDetail {
     private String firstName;
     private String lastName;
-
+    private String emailId;
     public String getFirstName() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your first name");
         firstName = scanner.nextLine();
         return firstName;
-
     }
 
     public boolean validateFirstName(String name) {
@@ -55,5 +54,31 @@ public class UserRegistrationDetail {
         return matches;
     }
 
-}
+    /* @Description take a email id by user and return emailid.
+     */
+    public String getEmailId() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("enter your email");
+        emailId = scanner.nextLine();
+        return emailId;
+    }
+ /*
+   @Discription in this we are validate the condition for user.
+   if user enter the currect email id and followed by the regex condition
+ */
+        public boolean validateEmail(String emailId) {
+            Pattern pattern = Pattern.compile(
+                    "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+                    Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(emailId);
+            boolean matches = matcher.find();
+            if(matches)
+                System.out.println("Email id is valid");
+            else
+                System.out.println("Email id is not  valid");
+            return matches;
+        }
+
+    }
+
 
