@@ -43,6 +43,46 @@ public class UserRegistrationDetail {
         String firstName = UserRegistrationDetail.getFirstName();
         UserRegistrationDetail.validateFirstName(firstName);
         String lastName = UserRegistrationDetail.getLastName();
+        String emailId = UserRegistrationDetail.getEmailId();
+        UserRegistrationDetail.validateEmailId(emailId);
+        String mobileNumber = UserRegistrationDetail.getMobileNumber();
+        UserRegistrationDetail.validatemobileNumber(mobileNumber);
+        String password = UserRegistrationDetail.getPassword();
+        UserRegistrationDetail.validatepassword(password);
+
+
+    }
+
+    /*
+     @Discription in this we are validate the condition for user.
+     if user enter the currect email id and followed by the regex condition
+   */
+
+    private boolean validateEmailId(String emailId) {
+        Pattern pattern = Pattern.compile(
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+                Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(emailId);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("Email id is valid");
+        else
+            System.out.println("Email id is not  valid");
+        return matches;
+    }
+
+    /*@Description:- password must be of length at least 8 characters or more
+     * */
+
+    private boolean validatepassword(String password) {
+        Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(password);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("your password is valid");
+        else
+            System.out.println("Invalid password");
+        return matches;
     }
 
     /* @Description User enter a valid last name.
@@ -68,22 +108,6 @@ public class UserRegistrationDetail {
         return emailId;
     }
 
-    /*
-      @Discription in this we are validate the condition for user.
-      if user enter the currect email id and followed by the regex condition
-    */
-    public boolean validateEmail(String emailId) {
-        Pattern pattern = Pattern.compile(
-                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
-                Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(emailId);
-        boolean matches = matcher.find();
-        if (matches)
-            System.out.println("Email id is valid");
-        else
-            System.out.println("Email id is not  valid");
-        return matches;
-    }
 
     /*
  user need to enter mobile number and must follow the condition.
@@ -122,10 +146,22 @@ public class UserRegistrationDetail {
         return password;
     }
 
-    /*@Description:- password must be of length at least 8 characters or more
-     * */
 
-    public boolean validatePasswordRules(String password) {
+    public boolean validateEmail(String s) {
+        Pattern pattern = Pattern.compile(
+                "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$",
+                Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(emailId);
+        boolean matches = matcher.find();
+        if (matches)
+            System.out.println("Email id is valid");
+        else
+            System.out.println("Email id is not  valid");
+        return matches;
+    }
+
+    public boolean validatePasswordRules(String s) {
+
         Pattern pattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(password);
         boolean matches = matcher.find();
@@ -135,7 +171,6 @@ public class UserRegistrationDetail {
             System.out.println("Invalid password");
         return matches;
     }
-
 }
 
 
